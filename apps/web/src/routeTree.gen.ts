@@ -16,6 +16,10 @@ import { Route as DocsGettingStartedIndexRouteImport } from './routes/docs/getti
 import { Route as DocsComponentsIndexRouteImport } from './routes/docs/components/index'
 import { Route as DocsBuildingYourAppIndexRouteImport } from './routes/docs/building-your-app/index'
 import { Route as DocsGettingStartedInstallationRouteImport } from './routes/docs/getting-started/installation'
+import { Route as DocsComponentsButtonRouteImport } from './routes/docs/components/button'
+import { Route as DocsComponentsBoxRouteImport } from './routes/docs/components/box'
+import { Route as DocsComponentsBadgeRouteImport } from './routes/docs/components/badge'
+import { Route as DocsComponentsBackgroundViewRouteImport } from './routes/docs/components/background-view'
 import { Route as DocsComponentsAvatarRouteImport } from './routes/docs/components/avatar'
 import { Route as DocsBuildingYourAppThemingRouteImport } from './routes/docs/building-your-app/theming'
 import { Route as DocsBuildingYourAppStylingRouteImport } from './routes/docs/building-your-app/styling'
@@ -62,6 +66,27 @@ const DocsGettingStartedInstallationRoute =
   DocsGettingStartedInstallationRouteImport.update({
     id: '/getting-started/installation',
     path: '/getting-started/installation',
+    getParentRoute: () => DocsRouteRoute,
+  } as any)
+const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
+  id: '/components/button',
+  path: '/components/button',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsBoxRoute = DocsComponentsBoxRouteImport.update({
+  id: '/components/box',
+  path: '/components/box',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsBadgeRoute = DocsComponentsBadgeRouteImport.update({
+  id: '/components/badge',
+  path: '/components/badge',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsBackgroundViewRoute =
+  DocsComponentsBackgroundViewRouteImport.update({
+    id: '/components/background-view',
+    path: '/components/background-view',
     getParentRoute: () => DocsRouteRoute,
   } as any)
 const DocsComponentsAvatarRoute = DocsComponentsAvatarRouteImport.update({
@@ -127,6 +152,10 @@ export interface FileRoutesByFullPath {
   '/docs/building-your-app/styling': typeof DocsBuildingYourAppStylingRoute
   '/docs/building-your-app/theming': typeof DocsBuildingYourAppThemingRoute
   '/docs/components/avatar': typeof DocsComponentsAvatarRoute
+  '/docs/components/background-view': typeof DocsComponentsBackgroundViewRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
+  '/docs/components/box': typeof DocsComponentsBoxRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/getting-started/installation': typeof DocsGettingStartedInstallationRoute
   '/docs/building-your-app': typeof DocsBuildingYourAppIndexRoute
   '/docs/components': typeof DocsComponentsIndexRoute
@@ -145,6 +174,10 @@ export interface FileRoutesByTo {
   '/docs/building-your-app/styling': typeof DocsBuildingYourAppStylingRoute
   '/docs/building-your-app/theming': typeof DocsBuildingYourAppThemingRoute
   '/docs/components/avatar': typeof DocsComponentsAvatarRoute
+  '/docs/components/background-view': typeof DocsComponentsBackgroundViewRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
+  '/docs/components/box': typeof DocsComponentsBoxRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/getting-started/installation': typeof DocsGettingStartedInstallationRoute
   '/docs/building-your-app': typeof DocsBuildingYourAppIndexRoute
   '/docs/components': typeof DocsComponentsIndexRoute
@@ -165,6 +198,10 @@ export interface FileRoutesById {
   '/docs/building-your-app/styling': typeof DocsBuildingYourAppStylingRoute
   '/docs/building-your-app/theming': typeof DocsBuildingYourAppThemingRoute
   '/docs/components/avatar': typeof DocsComponentsAvatarRoute
+  '/docs/components/background-view': typeof DocsComponentsBackgroundViewRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
+  '/docs/components/box': typeof DocsComponentsBoxRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/getting-started/installation': typeof DocsGettingStartedInstallationRoute
   '/docs/building-your-app/': typeof DocsBuildingYourAppIndexRoute
   '/docs/components/': typeof DocsComponentsIndexRoute
@@ -186,6 +223,10 @@ export interface FileRouteTypes {
     | '/docs/building-your-app/styling'
     | '/docs/building-your-app/theming'
     | '/docs/components/avatar'
+    | '/docs/components/background-view'
+    | '/docs/components/badge'
+    | '/docs/components/box'
+    | '/docs/components/button'
     | '/docs/getting-started/installation'
     | '/docs/building-your-app'
     | '/docs/components'
@@ -204,6 +245,10 @@ export interface FileRouteTypes {
     | '/docs/building-your-app/styling'
     | '/docs/building-your-app/theming'
     | '/docs/components/avatar'
+    | '/docs/components/background-view'
+    | '/docs/components/badge'
+    | '/docs/components/box'
+    | '/docs/components/button'
     | '/docs/getting-started/installation'
     | '/docs/building-your-app'
     | '/docs/components'
@@ -223,6 +268,10 @@ export interface FileRouteTypes {
     | '/docs/building-your-app/styling'
     | '/docs/building-your-app/theming'
     | '/docs/components/avatar'
+    | '/docs/components/background-view'
+    | '/docs/components/badge'
+    | '/docs/components/box'
+    | '/docs/components/button'
     | '/docs/getting-started/installation'
     | '/docs/building-your-app/'
     | '/docs/components/'
@@ -294,6 +343,34 @@ declare module '@tanstack/react-router' {
       path: '/getting-started/installation'
       fullPath: '/docs/getting-started/installation'
       preLoaderRoute: typeof DocsGettingStartedInstallationRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/button': {
+      id: '/docs/components/button'
+      path: '/components/button'
+      fullPath: '/docs/components/button'
+      preLoaderRoute: typeof DocsComponentsButtonRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/box': {
+      id: '/docs/components/box'
+      path: '/components/box'
+      fullPath: '/docs/components/box'
+      preLoaderRoute: typeof DocsComponentsBoxRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/badge': {
+      id: '/docs/components/badge'
+      path: '/components/badge'
+      fullPath: '/docs/components/badge'
+      preLoaderRoute: typeof DocsComponentsBadgeRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/background-view': {
+      id: '/docs/components/background-view'
+      path: '/components/background-view'
+      fullPath: '/docs/components/background-view'
+      preLoaderRoute: typeof DocsComponentsBackgroundViewRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/components/avatar': {
@@ -374,6 +451,10 @@ interface DocsRouteRouteChildren {
   DocsBuildingYourAppStylingRoute: typeof DocsBuildingYourAppStylingRoute
   DocsBuildingYourAppThemingRoute: typeof DocsBuildingYourAppThemingRoute
   DocsComponentsAvatarRoute: typeof DocsComponentsAvatarRoute
+  DocsComponentsBackgroundViewRoute: typeof DocsComponentsBackgroundViewRoute
+  DocsComponentsBadgeRoute: typeof DocsComponentsBadgeRoute
+  DocsComponentsBoxRoute: typeof DocsComponentsBoxRoute
+  DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsGettingStartedInstallationRoute: typeof DocsGettingStartedInstallationRoute
   DocsBuildingYourAppIndexRoute: typeof DocsBuildingYourAppIndexRoute
   DocsComponentsIndexRoute: typeof DocsComponentsIndexRoute
@@ -385,6 +466,10 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsBuildingYourAppStylingRoute: DocsBuildingYourAppStylingRoute,
   DocsBuildingYourAppThemingRoute: DocsBuildingYourAppThemingRoute,
   DocsComponentsAvatarRoute: DocsComponentsAvatarRoute,
+  DocsComponentsBackgroundViewRoute: DocsComponentsBackgroundViewRoute,
+  DocsComponentsBadgeRoute: DocsComponentsBadgeRoute,
+  DocsComponentsBoxRoute: DocsComponentsBoxRoute,
+  DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsGettingStartedInstallationRoute: DocsGettingStartedInstallationRoute,
   DocsBuildingYourAppIndexRoute: DocsBuildingYourAppIndexRoute,
   DocsComponentsIndexRoute: DocsComponentsIndexRoute,
