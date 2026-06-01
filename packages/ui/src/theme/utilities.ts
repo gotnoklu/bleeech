@@ -85,3 +85,7 @@ export function alpha(color: string, opacity: number): string {
   }
   return color
 }
+
+export function isObject<Value>(value: Value): value is Exclude<Extract<Value, Record<PropertyKey, any>>, unknown[]> {
+  return Object.prototype.toString.call(value) === '[object Object]'
+}
