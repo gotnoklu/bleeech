@@ -10,7 +10,6 @@ import mdx from '@mdx-js/rollup'
 
 const config = defineConfig({
   plugins: [
-    // contentCollections(),
     devtools(),
     nitro(),
     // this is the plugin that enables path aliases
