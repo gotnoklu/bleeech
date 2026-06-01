@@ -1,6 +1,7 @@
 import { Box } from '@bleeech/ui/components/box'
 import { ListItem } from '@bleeech/ui/components/list-item'
 import { Progress } from '@bleeech/ui/components/progress'
+import { CircularProgress } from '@bleeech/ui/components/progress/circular-progress'
 import { Text } from '@bleeech/ui/components/text'
 import { Section, SubSection } from '../../components/section'
 
@@ -13,6 +14,7 @@ export const ProgressShowcase = () => {
         <Text variant="lg" color="text.secondary">
           Variants
         </Text>
+        <CircularProgress />
         <ListItem disableMinHeight disablePadding>
           <Box flex={1} gap={1}>
             <Text color="text.secondary">Rounded</Text>
