@@ -8,7 +8,7 @@ import {
   View,
   type ViewProps,
 } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { createVariants, styled } from '../../theme/styles'
 import { Text, type TextProps } from '../text'
 
 export type InputVariant = 'default' | 'filled' | 'outlined'
@@ -65,8 +65,20 @@ const InputRoot = styled(View)<ViewProps & Pick<InputProps, 'fullWidth'>>((theme
 const StyledTextInputWrapper = styled(View)<
   ViewProps & Pick<InputProps, 'variant' | 'fullWidth' | 'invalid'> & { isFocused?: boolean }
 >((theme, { variant = 'default', fullWidth, isFocused, invalid }) => {
-  return selectStyles(
-    {
+  return createVariants({
+    styles: {
+      default: 'outlined',
+      outlined: {
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: invalid ? theme.palette.error.main : isFocused ? theme.palette.primary.main : theme.palette.border,
+      },
+      filled: {
+        backgroundColor: theme.palette.inputFilled,
+      },
+    },
+    defaults: {
+      variant: 'default',
       styles: {
         minHeight: 44,
         borderRadius: theme.radius(2),
@@ -78,21 +90,7 @@ const StyledTextInputWrapper = styled(View)<
         flex: fullWidth ? 1 : 0,
       },
     },
-    {
-      when: variant === 'outlined',
-      styles: {
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: invalid ? theme.palette.error.main : isFocused ? theme.palette.primary.main : theme.palette.border,
-      },
-    },
-    {
-      when: variant === 'filled',
-      styles: {
-        backgroundColor: theme.palette.inputFilled,
-      },
-    }
-  )
+  })(variant)
 })
 
 const StyledTextInput = styled(TextInput)<TextInputProps & { disabled?: boolean }>((theme, { disabled = false }) => {

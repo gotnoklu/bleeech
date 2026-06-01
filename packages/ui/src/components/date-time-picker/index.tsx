@@ -570,7 +570,7 @@ export function DateTimePicker({
                   <StyledContent>
                     {datePickerState.currentViews.root === 'date' && (
                       <>
-                        <Box direction="row" justifyContent="space-between" alignItems="center" marginBottom={2}>
+                        <Box direction="row" justifyContent="space-between" alignItems="center" mb={2}>
                           {datePickerState.currentViews.calendar === 'days' && (
                             <Box direction="row" alignItems="center" justifyContent="space-between" width="100%">
                               <Button
@@ -680,7 +680,7 @@ export function DateTimePicker({
                         {datePickerState.currentViews.calendar === 'months' && renderMonths()}
 
                         {type === 'datetime' && datePickerState.currentViews.calendar === 'days' && (
-                          <Box direction="row" justifyContent="flex-end" gap={1} marginTop={4}>
+                          <Box direction="row" justifyContent="flex-end" gap={1} mt={4}>
                             <Button variant="ghost" style={{ flex: 1 }} onPress={handleClose}>
                               Cancel
                             </Button>

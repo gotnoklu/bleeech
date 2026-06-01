@@ -2,10 +2,10 @@ import { useLayoutEffect, useState } from 'react'
 import { Pressable, type PressableProps, View } from 'react-native'
 import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { useTheme } from '../../theme/context'
-import { selectStyles, styled } from '../../theme/styles'
+import { createVariants, styled } from '../../theme/styles'
 
 interface BaseSwitchProps extends PressableProps {
-  variant?: 'filled' | 'outlined'
+  variant?: 'default' | 'filled' | 'outlined'
   shape?: 'default' | 'rounded'
   onChecked?(checked: boolean): void
 }
@@ -20,24 +20,25 @@ interface UncontrolledSwitchProps extends BaseSwitchProps {
 
 export interface SwitchProps extends Partial<ControlledSwitchProps>, UncontrolledSwitchProps {}
 
-const Track = styled(Pressable)<SwitchProps>((theme, { variant = 'outlined', shape = 'default', disabled }) => {
-  return selectStyles(
-    {
-      when: variant === 'outlined',
-      styles: {
+const Track = styled(Pressable)<SwitchProps>((theme, { variant = 'default', shape = 'default', disabled }) => {
+  return createVariants({
+    styles: {
+      default: 'outlined',
+      outlined: {
         borderWidth: 1.2,
         borderColor: disabled ? theme.palette.disabled : theme.palette.switchTrackOutlined,
       },
-    },
-    {
-      when: variant === 'filled',
-      styles: {
+      filled: {
         backgroundColor: theme.palette.switchTrackFilled,
       },
     },
-    {
+    defaults: {
+      variant: 'outlined',
       styles: {
-        borderRadius: theme.radius(shape === 'rounded' ? 4 : 2),
+        ...createVariants({
+          styles: { default: { borderRadius: 2 }, rounded: { borderRadius: 4 } },
+          defaults: { variant: 'default' },
+        })(shape),
         width: 40,
         minHeight: 16,
         padding: theme.spacing(0.5),
@@ -45,32 +46,33 @@ const Track = styled(Pressable)<SwitchProps>((theme, { variant = 'outlined', sha
         alignItems: 'center',
         opacity: disabled ? 0.3 : 1,
       },
-    }
-  )
+    },
+  })(variant)
 })
 
-const Thumb = styled(View)<SwitchProps>((theme, { variant = 'outlined', disabled, shape = 'default' }) => {
-  return selectStyles(
-    {
-      when: variant === 'outlined',
-      styles: {
+const Thumb = styled(View)<SwitchProps>((theme, { variant = 'default', disabled, shape = 'default' }) => {
+  return createVariants({
+    styles: {
+      default: 'outlined',
+      outlined: {
         backgroundColor: disabled ? theme.palette.disabled : theme.palette.switchTrackOutlined,
       },
-    },
-    {
-      when: variant === 'filled',
-      styles: {
+      filled: {
         backgroundColor: disabled ? theme.palette.disabled : theme.palette.card,
       },
     },
-    {
+    defaults: {
+      variant: 'default',
       styles: {
-        borderRadius: theme.radius(shape === 'rounded' ? 4 : 1),
+        ...createVariants({
+          styles: { default: { borderRadius: 1 }, rounded: { borderRadius: 4 } },
+          defaults: { variant: 'default' },
+        })(shape),
         width: 16,
         height: 16,
       },
-    }
-  )
+    },
+  })(variant)
 })
 
 const AnimatedTrack = Animated.createAnimatedComponent(Track)

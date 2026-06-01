@@ -11,7 +11,7 @@ import {
   type ViewProps,
 } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
-import { selectStyles, styled } from '../../theme/styles'
+import { createVariants, styled } from '../../theme/styles'
 import { Card, type CardProps } from '../card'
 import { IconCheck, IconChevronDown, IconChevronUp, IconSearch } from '../icons'
 import { Input } from '../input'
@@ -20,7 +20,7 @@ import { Separator } from '../separator'
 import { Show } from '../show'
 import { Text, type TextProps } from '../text'
 
-export type SelectVariant = 'base' | 'outlined'
+export type SelectVariant = 'default' | 'outlined'
 
 type BaseProps<Options extends Array<Record<PropertyKey, any>> = []> = {
   variant?: SelectVariant
@@ -59,8 +59,17 @@ const StyledDropdown = styled(Pressable)<
       isOpen?: boolean
     }
 >((theme, { displayOnlyIcon, variant, fullWidth, isOpen }) => {
-  return selectStyles(
-    {
+  return createVariants({
+    styles: {
+      default: 'outlined',
+      outlined: {
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: isOpen ? theme.palette.primary.main : theme.palette.border,
+      },
+    },
+    defaults: {
+      variant: 'default',
       styles: {
         minHeight: 44,
         borderRadius: theme.radius(2),
@@ -72,15 +81,7 @@ const StyledDropdown = styled(Pressable)<
         maxWidth: fullWidth ? '100%' : 'auto',
       },
     },
-    {
-      when: variant === 'outlined',
-      styles: {
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: isOpen ? theme.palette.primary.main : theme.palette.border,
-      },
-    }
-  )
+  })(variant)
 })
 
 const StyledRootView = styled(View)<ViewProps>((theme) => {
@@ -94,7 +95,7 @@ const AnimatedCard = Animated.createAnimatedComponent(Card)
 function BaseDropdown<Options extends Array<Record<PropertyKey, any>> = []>({
   label,
   description,
-  variant = 'base',
+  variant = 'default',
   value,
   placeholder = 'Select Option',
   options = [] as unknown as Options,

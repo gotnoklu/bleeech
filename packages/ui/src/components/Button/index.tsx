@@ -1,11 +1,11 @@
 import { Children, type Component, type ForwardedRef, forwardRef, type ReactNode } from 'react'
 import { Pressable, type PressableProps } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { createVariants, styled } from '../../theme/styles'
 import type { PaletteColorToken } from '../../theme/types'
 import { getThemeProperty } from '../../theme/utilities'
 import { Text, type TextProps } from '../text'
 
-export type ButtonVariant = 'filled' | 'outlined' | 'ghost'
+export type ButtonVariant = 'default' | 'filled' | 'outlined' | 'ghost'
 export type ButtonSizes = 'sm' | 'md' | 'lg' | 'icon' | 'icon-sm' | 'icon-md' | 'icon-lg'
 
 export interface ButtonProps extends PressableProps {
@@ -21,7 +21,7 @@ export interface ButtonProps extends PressableProps {
   disabled?: boolean
 }
 
-const ButtonSizes: { [_ in ButtonSizes]: number } = {
+const _ButtonSizes: { [_ in ButtonSizes]: number } = {
   sm: 32,
   md: 40,
   lg: 48,
@@ -41,87 +41,73 @@ const ButtonRadii: { [_ in ButtonSizes]: number } = {
   'icon-lg': 4,
 }
 
+const _getButtonSize = createVariants({
+  styles: {
+    sm: { width: 32, height: 32, maxWidth: 32, maxHeight: 32, borderRadius: 2.5 },
+    md: { width: 40, height: 40, maxWidth: 40, maxHeight: 40, borderRadius: 3 },
+    lg: { width: 48, height: 48, maxWidth: 48, maxHeight: 48, borderRadius: 4 },
+    icon: { width: 40, height: 40, maxWidth: 40, maxHeight: 40, borderRadius: 3 },
+    'icon-sm': { width: 32, height: 32, maxWidth: 32, maxHeight: 32, borderRadius: 2.5 },
+    'icon-md': { width: 40, height: 40, maxWidth: 40, maxHeight: 40, borderRadius: 3 },
+    'icon-lg': { width: 48, height: 48, maxWidth: 48, maxHeight: 48, borderRadius: 4 },
+  },
+  defaults: { variant: 'md' },
+})
+
 const TextSizes: { [_ in Exclude<ButtonSizes, `icon${string}`>]: number } = { sm: 14, md: 16, lg: 18 }
 
 const StyledButton = styled(Pressable)<ButtonProps>(
-  (theme, { variant = 'text', color = 'primary', size = 'md', fullWidth, disabled, shape = 'default' }) => {
+  (theme, { variant = 'default', color = 'primary', size = 'md', fullWidth, disabled, shape = 'default' }) => {
     const buttonColor = getThemeProperty({ object: theme.palette, key: color, fallback: color })
 
-    if (size.startsWith('icon')) {
-      return selectStyles(
-        {
-          when: variant === 'filled',
-          styles: {
-            backgroundColor: disabled ? theme.palette.disabled : buttonColor,
-            opacity: disabled ? 0.3 : 1,
-          },
-        },
-        {
-          when: variant === 'outlined',
-          styles: {
-            borderColor: disabled ? theme.palette.disabled : buttonColor,
-            borderWidth: 1.2,
-          },
-        },
-        {
-          when: variant === 'ghost',
-          styles: { backgroundColor: 'transparent' },
-        },
-        {
-          styles: {
-            overflow: 'hidden',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: ButtonSizes[size],
-            height: ButtonSizes[size],
-            maxWidth: ButtonSizes[size],
-            maxHeight: ButtonSizes[size],
-            display: 'flex',
-            flexDirection: 'row',
-            borderRadius: theme.radius(shape === 'rounded' ? 100 : ButtonRadii[size]),
-            padding: theme.spacing(1.5),
-          },
-        }
-      )
-    }
-
-    return selectStyles(
-      {
-        when: variant === 'filled',
-        styles: {
-          backgroundColor: disabled ? theme.palette.disabled : buttonColor,
-          opacity: disabled ? 0.3 : 1,
-        },
+    const buttonSizeStyles = createVariants({
+      styles: {
+        sm: { paddingHorizontal: theme.spacing(1.5), minWidth: 40, width: fullWidth ? '100%' : 'auto' },
+        md: { paddingHorizontal: theme.spacing(3), minWidth: 40, width: fullWidth ? '100%' : 'auto' },
+        lg: { paddingHorizontal: theme.spacing(4), minWidth: 40, width: fullWidth ? '100%' : 'auto' },
+        icon: { width: 40, height: 40, maxWidth: 40, maxHeight: 40 },
+        'icon-sm': { width: 32, height: 32, maxWidth: 32, maxHeight: 32 },
+        'icon-md': { width: 40, height: 40, maxWidth: 40, maxHeight: 40 },
+        'icon-lg': { width: 48, height: 48, maxWidth: 48, maxHeight: 48 },
       },
-      {
-        when: variant === 'outlined',
-        styles: {
+      defaults: {
+        variant: 'md',
+        styles: { gap: theme.spacing(1) },
+      },
+    })(size)
+
+    const buttonRadiiStyles = createVariants({
+      styles: {
+        default: { borderRadius: theme.radius(ButtonRadii[size]) },
+        rounded: { borderRadius: theme.radius(100) },
+      },
+      defaults: { variant: 'default' },
+    })(shape)
+
+    const buttonVariantStyles = createVariants({
+      styles: {
+        default: 'outlined',
+        filled: { backgroundColor: disabled ? theme.palette.disabled : buttonColor, opacity: disabled ? 0.3 : 1 },
+        outlined: {
           borderColor: disabled ? theme.palette.disabled : buttonColor,
           borderWidth: 1.2,
         },
+        ghost: { backgroundColor: 'transparent' },
       },
-      {
-        when: variant === 'text',
-        styles: { backgroundColor: 'transparent' },
-      },
-      {
+      defaults: {
+        variant: 'default',
         styles: {
           overflow: 'hidden',
           alignItems: 'center',
           justifyContent: 'center',
-          width: fullWidth ? '100%' : 'auto',
-          minWidth: 64,
           display: 'flex',
           flexDirection: 'row',
-          height: ButtonSizes[size],
-          maxHeight: ButtonSizes[size],
-          borderRadius: theme.radius(shape === 'rounded' ? 100 : 2),
-          gap: theme.spacing(1),
-          paddingHorizontal: size === 'sm' ? theme.spacing(1.5) : size === 'md' ? theme.spacing(3) : theme.spacing(4),
           ...theme.typography.variants.md,
         },
-      }
-    )
+      },
+    })(variant)
+
+    return { ...buttonSizeStyles, ...buttonRadiiStyles, ...buttonVariantStyles }
   }
 )
 
@@ -130,28 +116,26 @@ const StyledText = styled(Text)<
 >((theme, { buttonVariant = 'ghost', color = 'primary', size = 'md', disabled }) => {
   const buttonColor = getThemeProperty({ object: theme.palette, key: color, fallback: color })
 
-  return selectStyles(
-    {
-      when: buttonVariant === 'filled',
-      styles: {
+  return createVariants({
+    styles: {
+      default: 'ghost',
+      filled: {
         color: getThemeProperty({
           object: theme.palette,
           key: disabled ? 'text.disabled' : `${color}.foreground`,
           fallback: color,
         }),
       },
+      outlined: { color: disabled ? theme.palette.disabled : buttonColor },
+      ghost: 'outlined',
     },
-    {
-      when: buttonVariant === 'outlined' || buttonVariant === 'ghost',
-      styles: { color: disabled ? theme.palette.disabled : buttonColor },
-    },
-    {
-      when: !size.startsWith('icon'),
+    defaults: {
+      variant: 'default',
       styles: {
         fontSize: TextSizes[size as keyof typeof TextSizes],
       },
-    }
-  )
+    },
+  })(buttonVariant)
 })
 
 export const Button = forwardRef(function Button(

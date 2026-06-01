@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Pressable, type PressableProps } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { createVariants, styled } from '../../theme/styles'
 import { IconCheck } from '../icons'
 
 type CheckboxSizes = 'sm' | 'md' | 'lg'
@@ -28,10 +28,10 @@ const CheckboxRadii: { [_ in CheckboxSizes]: number } = {
 
 const StyledCheckbox = styled(Pressable)<CheckboxProps>(
   (theme, { variant = 'outlined', checked = false, size = 'md', disabled = false, shape = 'default' }) => {
-    return selectStyles(
-      {
-        when: variant === 'filled',
-        styles: {
+    return createVariants({
+      styles: {
+        default: 'outlined',
+        filled: {
           width: CheckboxSizes[size],
           height: CheckboxSizes[size],
           backgroundColor: disabled
@@ -40,25 +40,23 @@ const StyledCheckbox = styled(Pressable)<CheckboxProps>(
               ? theme.palette.primary.main
               : theme.palette.checkboxFilled,
         },
-      },
-      {
-        when: variant === 'outlined',
-        styles: {
+        outlined: {
           width: CheckboxSizes[size] - 1.2,
           height: CheckboxSizes[size] - 1.2,
           borderWidth: 1.2,
           borderColor: disabled ? theme.palette.disabled : theme.palette.primary.main,
         },
       },
-      {
+      defaults: {
+        variant: 'default',
         styles: {
           borderRadius: shape === 'rounded' ? CheckboxSizes[size] : theme.radius(CheckboxRadii[size]),
           alignItems: 'center',
           justifyContent: 'center',
           opacity: disabled ? 0.3 : 1,
         },
-      }
-    )
+      },
+    })(variant)
   }
 )
 

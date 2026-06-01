@@ -1,23 +1,21 @@
 import { type ForwardedRef, forwardRef } from 'react'
 import { Pressable, type PressableProps, type View } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { createVariants, mergeStyles, styled } from '../../theme/styles'
 import { Separator } from '../separator'
 
 export interface ListItemButtonProps extends PressableProps {
-  size?: 'small' | 'medium' | 'large'
+  size?: 'sm' | 'md' | 'lg'
   separator?: boolean
   disablePadding?: boolean
   disableMinHeight?: boolean
 }
 
 export const StyledListItemButton = styled(Pressable)<ListItemButtonProps>(
-  (theme, { size = 'large', disablePadding, disableMinHeight }) => {
-    return selectStyles(
-      { when: disableMinHeight, styles: { minHeight: 'auto' } },
-      { when: size === 'small', styles: { minHeight: 40 } },
-      { when: size === 'medium', styles: { minHeight: 48 } },
-      { when: size === 'large', styles: { minHeight: 56 } },
-      {
+  (theme, { size = 'md', disablePadding, disableMinHeight }) => {
+    const styles = createVariants({
+      styles: { sm: { minHeight: 40 }, md: { minHeight: 48 }, lg: { minHeight: 56 } },
+      defaults: {
+        variant: 'md',
         styles: {
           flex: 1,
           flexDirection: 'row',
@@ -25,9 +23,12 @@ export const StyledListItemButton = styled(Pressable)<ListItemButtonProps>(
           gap: theme.spacing(2),
           borderRadius: theme.radius(2),
           paddingHorizontal: disablePadding ? 0 : theme.spacing(2),
+          minHeight: 'auto',
         },
-      }
-    )
+      },
+    })(size)
+
+    return mergeStyles(disableMinHeight && { minHeight: 'auto' }, styles)
   }
 )
 

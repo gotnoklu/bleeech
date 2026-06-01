@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { isValidElement, useState } from 'react'
 import type { LayoutChangeEvent, ViewProps } from 'react-native'
 import { View } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { mergeStyles, styled } from '../../theme/styles'
 import type { PaletteBaseColorToken } from '../../theme/types'
 import { getThemeProperty } from '../../theme/utilities'
 import type { TextProps } from '../text'
@@ -43,44 +43,34 @@ const StyledBadge = styled(View)<BadgeProps>((theme, { color = 'primary', size =
   } as const
 
   if (indicator !== undefined && indicator !== null) {
-    return selectStyles(
-      {
-        when: cutout,
-        styles: {
-          borderColor: theme.palette.background,
-          borderWidth: 3,
-        },
+    return mergeStyles(
+      cutout && {
+        borderColor: theme.palette.background,
+        borderWidth: 3,
       },
+      baseStyles,
       {
-        styles: {
-          ...baseStyles,
-          paddingHorizontal: theme.spacing(isValidElement(indicator) ? 0.5 : 1),
-          paddingVertical: theme.spacing(0.5),
-        },
+        paddingHorizontal: theme.spacing(isValidElement(indicator) ? 0.5 : 1),
+        paddingVertical: theme.spacing(0.5),
       }
     )
   }
 
   const badgeSize = BadgeSizes[size]
 
-  return selectStyles(
+  return mergeStyles(
+    baseStyles,
     {
-      styles: {
-        ...baseStyles,
-        width: badgeSize,
-        height: badgeSize,
-      },
+      width: badgeSize,
+      height: badgeSize,
     },
-    {
-      when: cutout,
-      styles: {
-        width: badgeSize + 4,
-        height: badgeSize + 4,
-        paddingHorizontal: theme.spacing(0.2),
-        paddingVertical: theme.spacing(0.2),
-        borderColor: theme.palette.background,
-        borderWidth: 3,
-      },
+    cutout && {
+      width: badgeSize + 4,
+      height: badgeSize + 4,
+      paddingHorizontal: theme.spacing(0.2),
+      paddingVertical: theme.spacing(0.2),
+      borderColor: theme.palette.background,
+      borderWidth: 3,
     }
   )
 })

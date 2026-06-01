@@ -1,6 +1,6 @@
 import { type ForwardedRef, forwardRef } from 'react'
 import { type AnimatableNumericValue, type DimensionValue, View, type ViewProps } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { mergeStyles, styled } from '../../theme/styles'
 import type { Palette, TextPaletteColors } from '../../theme/types'
 import { getThemeProperty } from '../../theme/utilities'
 
@@ -11,20 +11,20 @@ export interface BoxProps extends ViewProps {
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse'
   flex?: number
   gap?: number
-  padding?: DimensionValue
-  margin?: DimensionValue
-  paddingX?: DimensionValue
-  marginX?: DimensionValue
-  paddingY?: DimensionValue
-  paddingTop?: DimensionValue
-  paddingBottom?: DimensionValue
-  paddingLeft?: DimensionValue
-  paddingRight?: DimensionValue
-  marginY?: DimensionValue
-  marginTop?: DimensionValue
-  marginBottom?: DimensionValue
-  marginLeft?: DimensionValue
-  marginRight?: DimensionValue
+  p?: DimensionValue
+  px?: DimensionValue
+  py?: DimensionValue
+  pt?: DimensionValue
+  pb?: DimensionValue
+  pl?: DimensionValue
+  pr?: DimensionValue
+  m?: DimensionValue
+  mx?: DimensionValue
+  my?: DimensionValue
+  mt?: DimensionValue
+  mb?: DimensionValue
+  ml?: DimensionValue
+  mr?: DimensionValue
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline'
   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly'
   backgroundColor?: keyof Palette | keyof TextPaletteColors | (string & {})
@@ -39,20 +39,20 @@ const StyledBox = styled(View, {
     'flex',
     'alignItems',
     'justifyContent',
-    'padding',
-    'paddingY',
-    'paddingX',
-    'margin',
-    'marginY',
-    'marginX',
-    'paddingTop',
-    'paddingBottom',
-    'paddingLeft',
-    'paddingRight',
-    'marginTop',
-    'marginBottom',
-    'marginLeft',
-    'marginRight',
+    'p',
+    'py',
+    'px',
+    'pt',
+    'pb',
+    'pl',
+    'pr',
+    'm',
+    'my',
+    'mx',
+    'mt',
+    'mb',
+    'ml',
+    'mr',
     'gap',
     'backgroundColor',
   ],
@@ -68,108 +68,86 @@ const StyledBox = styled(View, {
       alignItems,
       justifyContent,
       backgroundColor,
-      padding,
-      paddingY,
-      paddingX,
-      margin,
-      marginY,
-      marginX,
-      paddingTop,
-      paddingBottom,
-      paddingLeft,
-      paddingRight,
-      marginTop,
-      marginBottom,
+      p,
+      py,
+      px,
+      pl,
+      pt,
+      pb,
+      pr,
+      m,
+      my,
+      mx,
+      ml,
+      mt,
+      mb,
+      mr,
       gap = 0,
     }
   ) => {
-    return selectStyles(
-      {
-        when: typeof padding === 'string' || typeof padding === 'number',
-        styles: { padding: typeof padding === 'number' ? theme.spacing(padding) : padding },
+    return mergeStyles(
+      (typeof p === 'string' || typeof p === 'number') && {
+        padding: typeof p === 'number' ? theme.spacing(p) : p,
+      },
+      (typeof pt === 'string' || typeof pt === 'number') && {
+        paddingTop: typeof pt === 'number' ? theme.spacing(pt) : pt,
+      },
+      (typeof pl === 'string' || typeof pl === 'number') && {
+        paddingLeft: typeof pl === 'number' ? theme.spacing(pl) : pl,
+      },
+      (typeof pr === 'string' || typeof pr === 'number') && {
+        paddingRight: typeof pr === 'number' ? theme.spacing(pr) : pr,
+      },
+      (typeof pb === 'string' || typeof pb === 'number') && {
+        paddingBottom: typeof pb === 'number' ? theme.spacing(pb) : pb,
+      },
+      (typeof px === 'string' || typeof px === 'number') && {
+        paddingLeft: typeof px === 'number' ? theme.spacing(px) : px,
+        paddingRight: typeof px === 'number' ? theme.spacing(px) : px,
+      },
+      (typeof py === 'string' || typeof py === 'number') && {
+        paddingTop: typeof py === 'number' ? theme.spacing(py) : py,
+        paddingBottom: typeof py === 'number' ? theme.spacing(py) : py,
+      },
+      (typeof m === 'string' || typeof m === 'number') && {
+        margin: typeof m === 'number' ? theme.spacing(m) : m,
+      },
+      (typeof mt === 'string' || typeof mt === 'number') && {
+        marginTop: typeof mt === 'number' ? theme.spacing(mt) : mt,
+      },
+      (typeof ml === 'string' || typeof ml === 'number') && {
+        marginLeft: typeof ml === 'number' ? theme.spacing(ml) : ml,
+      },
+      (typeof mr === 'string' || typeof mr === 'number') && {
+        marginRight: typeof mr === 'number' ? theme.spacing(mr) : mr,
+      },
+      (typeof mb === 'string' || typeof mb === 'number') && {
+        marginBottom: typeof mb === 'number' ? theme.spacing(mb) : mb,
+      },
+      (typeof mx === 'string' || typeof mx === 'number') && {
+        marginLeft: typeof mx === 'number' ? theme.spacing(mx) : mx,
+        marginRight: typeof mx === 'number' ? theme.spacing(mx) : mx,
+      },
+      (typeof my === 'string' || typeof my === 'number') && {
+        marginTop: typeof my === 'number' ? theme.spacing(my) : my,
+        marginBottom: typeof my === 'number' ? theme.spacing(my) : my,
       },
       {
-        when: typeof paddingTop === 'string' || typeof paddingTop === 'number',
-        styles: {
-          paddingTop: typeof paddingTop === 'number' ? theme.spacing(paddingTop) : paddingTop,
-        },
-      },
-      {
-        when: typeof paddingBottom === 'string' || typeof paddingBottom === 'number',
-        styles: {
-          paddingBottom: typeof paddingBottom === 'number' ? theme.spacing(paddingBottom) : paddingBottom,
-        },
-      },
-      {
-        when: typeof paddingLeft === 'string' || typeof paddingLeft === 'number',
-        styles: {
-          paddingLeft: typeof paddingLeft === 'number' ? theme.spacing(paddingLeft as number) : paddingLeft,
-        },
-      },
-      {
-        when: typeof paddingRight === 'string' || typeof paddingRight === 'number',
-        styles: {
-          paddingRight: typeof paddingRight === 'number' ? theme.spacing(paddingRight as number) : paddingRight,
-        },
-      },
-      {
-        when: typeof paddingX === 'string' || typeof paddingX === 'number',
-        styles: {
-          paddingHorizontal: typeof paddingX === 'number' ? theme.spacing(paddingX as number) : paddingX,
-        },
-      },
-      {
-        when: typeof paddingY === 'string' || typeof paddingY === 'number',
-        styles: {
-          paddingVertical: typeof paddingY === 'number' ? theme.spacing(paddingY as number) : paddingY,
-        },
-      },
-      {
-        when: typeof margin === 'string' || typeof margin === 'number',
-        styles: { margin: typeof margin === 'number' ? theme.spacing(margin) : margin },
-      },
-      {
-        when: typeof marginTop === 'string' || typeof marginTop === 'number',
-        styles: {
-          marginTop: typeof marginTop === 'number' ? theme.spacing(marginTop) : marginTop,
-        },
-      },
-      {
-        when: typeof marginBottom === 'string' || typeof marginBottom === 'number',
-        styles: {
-          marginBottom: typeof marginBottom === 'number' ? theme.spacing(marginBottom) : marginBottom,
-        },
-      },
-      {
-        when: typeof marginX === 'string' || typeof marginX === 'number',
-        styles: {
-          marginHorizontal: typeof marginX === 'number' ? theme.spacing(marginX) : marginX,
-        },
-      },
-      {
-        when: typeof marginY === 'string' || typeof marginY === 'number',
-        styles: {
-          marginVertical: typeof marginY === 'number' ? theme.spacing(marginY) : marginY,
-        },
-      },
-      {
-        styles: {
-          flex,
-          alignItems,
-          justifyContent,
-          width,
-          height,
-          borderRadius,
-          flexDirection: direction,
-          gap: theme.spacing(gap),
-          backgroundColor: backgroundColor
-            ? getThemeProperty({
-                object: theme.palette,
-                key: backgroundColor,
-                fallback: backgroundColor,
-              })
-            : undefined,
-        },
+        flex,
+        alignItems,
+        justifyContent,
+        width,
+        height,
+        borderRadius,
+        flexDirection: direction,
+        gap: theme.spacing(gap),
+        backgroundColor: backgroundColor
+          ? getThemeProperty({
+              object: theme.palette,
+              key: backgroundColor,
+              fallback: backgroundColor,
+            })
+          : undefined,
       }
     )
   }

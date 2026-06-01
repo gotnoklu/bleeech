@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { View, type ViewProps } from 'react-native'
-import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler'
+import { GestureDetector, usePanGesture } from 'react-native-gesture-handler'
 import type { GestureHandlerRootViewProps } from 'react-native-gesture-handler/lib/typescript/components/GestureHandlerRootView'
-import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import Animated, { useAnimatedReaction, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import { styled } from '../../theme/styles'
 import { Show } from '../show'
 import { Text } from '../text'
+import { runOnJS } from 'react-native-worklets'
 
 export interface SliderProps extends GestureHandlerRootViewProps {
   size?: 'sm' | 'md' | 'lg'
@@ -90,7 +91,6 @@ export function Slider({
   showValue = false,
   disabled = false,
   viewProps,
-  ...props
 }: SliderProps) {
   const sliderThumbSize = useRef(SliderThumbSizes[size])
   const position = useSharedValue(((value - min) / (max - min)) * 100)
@@ -114,28 +114,26 @@ export function Slider({
     trackWidth.value = event.nativeEvent.layout.width
   }, [])
 
-  const panGesture = Gesture.Pan()
-    .enabled(!disabled)
-    .onStart(() => {
-      'worklet'
+  const panGesture = usePanGesture({
+    minDistance: 1,
+    onBegin: () => {
       startX.value = position.value
-    })
-    .onUpdate((event) => {
-      'worklet'
+    },
+    onUpdate: (event) => {
       const maxWidth = trackWidth.value - sliderThumbSize.current
       let newPosition = startX.value + (event.translationX / maxWidth) * 100
       newPosition = Math.max(0, Math.min(100, newPosition))
       position.value = newPosition
-    })
-    .onEnd(() => {
-      'worklet'
+    },
+    onFinalize: () => {
       const newValue = min + (position.value / 100) * (max - min)
       const steppedValue = Math.round(newValue / step) * step
       position.value = ((steppedValue - min) / (max - min)) * 100
       if (onChange) {
         runOnJS(onChange)(steppedValue)
       }
-    })
+    },
+  })
 
   const thumbStyle = useAnimatedStyle(() => {
     const maxWidth = trackWidth.value - sliderThumbSize.current
@@ -157,31 +155,29 @@ export function Slider({
   }
 
   return (
-    <GestureHandlerRootView {...props} style={[{ flex: 1 }, props.style]}>
-      <View {...viewProps?.root} style={[{ width: '100%', marginVertical: 16 }, viewProps?.root?.style]}>
-        <StyledSliderWrapper {...viewProps?.sliderWrapper}>
-          <GestureDetector gesture={panGesture}>
-            <View style={{ flex: 1 }}>
-              <StyledTrack size={size} disabled={disabled} {...viewProps?.track} onLayout={onTrackLayout}>
-                <AnimatedFill style={fillStyle} disabled={disabled} {...viewProps?.fill} />
-              </StyledTrack>
-              <AnimatedThumb
-                size={size}
-                showValue={showValue}
-                style={thumbStyle}
-                disabled={disabled}
-                {...viewProps?.thumb}
-              >
-                <Show when={showValue}>
-                  <Text variant="xs" textAlign="center" {...viewProps?.value}>
-                    {displayValue}
-                  </Text>
-                </Show>
-              </AnimatedThumb>
-            </View>
-          </GestureDetector>
-        </StyledSliderWrapper>
-      </View>
-    </GestureHandlerRootView>
+    <View {...viewProps?.root} style={[{ width: '100%', marginVertical: 16 }, viewProps?.root?.style]}>
+      <StyledSliderWrapper {...viewProps?.sliderWrapper}>
+        <GestureDetector gesture={panGesture}>
+          <View style={{ flex: 1 }}>
+            <StyledTrack size={size} disabled={disabled} {...viewProps?.track} onLayout={onTrackLayout}>
+              <AnimatedFill style={fillStyle} disabled={disabled} {...viewProps?.fill} />
+            </StyledTrack>
+            <AnimatedThumb
+              size={size}
+              showValue={showValue}
+              style={thumbStyle}
+              disabled={disabled}
+              {...viewProps?.thumb}
+            >
+              <Show when={showValue}>
+                <Text variant="xs" textAlign="center" {...viewProps?.value}>
+                  {displayValue}
+                </Text>
+              </Show>
+            </AnimatedThumb>
+          </View>
+        </GestureDetector>
+      </StyledSliderWrapper>
+    </View>
   )
 }

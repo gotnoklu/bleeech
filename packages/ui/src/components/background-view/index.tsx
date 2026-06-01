@@ -1,5 +1,5 @@
 import { View, type ViewProps } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { mergeStyles, styled } from '../../theme/styles'
 
 export interface BackgroundViewProps extends ViewProps {
   fill?: boolean
@@ -15,11 +15,11 @@ export function BackgroundView({ fill, alignCenter, justifyCenter, style, childr
   return (
     <StyledBackgroundView
       {...props}
-      style={selectStyles(
-        { when: fill, styles: { flex: 1 } },
-        { when: alignCenter, styles: { alignItems: 'center' } },
-        { when: justifyCenter, styles: { justifyContent: 'center' } },
-        { styles: style }
+      style={mergeStyles(
+        fill && { flex: 1 },
+        alignCenter && { alignItems: 'center' },
+        justifyCenter && { justifyContent: 'center' },
+        style
       )}
     >
       {children}

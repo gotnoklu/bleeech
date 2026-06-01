@@ -1,6 +1,6 @@
 import { Children, type ReactNode, useState } from 'react'
 import { type GestureResponderEvent, Pressable, type PressableProps } from 'react-native'
-import { createStyles, selectStyles, styled } from '../../theme/styles'
+import { createStyles, createVariants, styled } from '../../theme/styles'
 import type { PaletteColorToken } from '../../theme/types'
 import { alpha, getThemeProperty } from '../../theme/utilities'
 import { Text, type TextProps } from '../text'
@@ -26,22 +26,19 @@ export interface ChipProps extends BaseChipProps {
 const StyledBaseChip = styled(Pressable)<BaseChipProps>(
   (theme, { variant = 'filled', checked, color = 'border', size = 'md', disabled, shape = 'default' }) => {
     const chipColor = getThemeProperty({ object: theme.palette, key: color, fallback: color })
-
-    return selectStyles(
-      {
-        when: variant === 'filled',
-        styles: {
+    const styles = createVariants({
+      styles: {
+        default: 'filled',
+        filled: {
           backgroundColor: alpha(checked ? theme.palette.primary.main : (chipColor ?? theme.palette.border), 0.1),
         },
-      },
-      {
-        when: variant === 'outlined',
-        styles: {
+        outlined: {
           borderColor: checked ? theme.palette.primary.main : disabled ? theme.palette.disabled : chipColor,
           borderWidth: 1,
         },
       },
-      {
+      defaults: {
+        variant: 'default',
         styles: {
           overflow: 'hidden',
           alignItems: 'center',
@@ -55,19 +52,30 @@ const StyledBaseChip = styled(Pressable)<BaseChipProps>(
           paddingHorizontal: size === 'sm' ? theme.spacing(1) : size === 'md' ? theme.spacing(1) : theme.spacing(2),
           ...theme.typography.variants.md,
         },
-      }
-    )
+      },
+    })(variant)
+
+    return styles
   }
 )
 
 const useLabelStyles = createStyles(
   (theme, { checked, size = 'md', disabled }: Pick<ChipProps, 'checked' | 'color' | 'size' | 'disabled'>) => {
-    const labelSizes = { sm: 11, md: 14, lg: 16 }
+    const styles = createVariants({
+      styles: { sm: { fontSize: 11 }, md: { fontSize: 14 }, lg: { fontSize: 16 } },
+      defaults: {
+        variant: 'md',
+        styles: {
+          color: checked
+            ? theme.palette.primary.main
+            : disabled
+              ? theme.palette.disabled
+              : theme.palette.text.secondary,
+        },
+      },
+    })(size)
 
-    return {
-      fontSize: labelSizes[size],
-      color: checked ? theme.palette.primary.main : disabled ? theme.palette.disabled : theme.palette.text.secondary,
-    }
+    return styles
   }
 )
 

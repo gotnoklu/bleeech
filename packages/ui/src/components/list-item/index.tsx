@@ -1,6 +1,6 @@
 import { type ForwardedRef, forwardRef } from 'react'
 import { View, type ViewProps } from 'react-native'
-import { selectStyles, styled } from '../../theme/styles'
+import { mergeStyles, styled } from '../../theme/styles'
 import { Separator } from '../separator'
 
 export interface ListItemProps extends ViewProps {
@@ -11,19 +11,17 @@ export interface ListItemProps extends ViewProps {
 }
 
 const StyledListItem = styled(View)<ListItemProps>((theme, { size = 'large', disablePadding, disableMinHeight }) => {
-  return selectStyles(
-    { when: disableMinHeight, styles: { minHeight: 'auto' } },
-    { when: size === 'small', styles: { minHeight: 40 } },
-    { when: size === 'medium', styles: { minHeight: 48 } },
-    { when: size === 'large', styles: { minHeight: 56 } },
+  return mergeStyles(
+    disableMinHeight && { minHeight: 'auto' },
+    size === 'small' && { minHeight: 40 },
+    size === 'medium' && { minHeight: 48 },
+    size === 'large' && { minHeight: 56 },
     {
-      styles: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: theme.spacing(2),
-        paddingHorizontal: disablePadding ? 0 : theme.spacing(2),
-      },
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: theme.spacing(2),
+      paddingHorizontal: disablePadding ? 0 : theme.spacing(2),
     }
   )
 })
