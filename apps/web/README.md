@@ -1,12 +1,12 @@
-Welcome to your new TanStack app! 
+Welcome to your new TanStack app!
 
 # Getting Started
 
 To run this application:
 
 ```bash
-yarn install
-yarn run start
+pnpm install
+pnpm run start
 ```
 
 # Building For Production
@@ -14,7 +14,7 @@ yarn run start
 To build this application for production:
 
 ```bash
-yarn run build
+pnpm run build
 ```
 
 ## Testing
@@ -22,25 +22,22 @@ yarn run build
 This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
 
 ```bash
-yarn run test
+pnpm run test
 ```
 
 ## Styling
 
 This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
 
-
 ## Linting & Formatting
 
 This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
 
-
 ```bash
-yarn run lint
-yarn run format
-yarn run check
+pnpm run lint
+pnpm run format
+pnpm run check
 ```
-
 
 ## Shadcn
 
@@ -50,9 +47,8 @@ Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
 pnpm dlx shadcn@latest add button
 ```
 
-
-
 ## Routing
+
 This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
 
 ### Adding A Route
@@ -88,8 +84,8 @@ In the File Based Routing setup the layout is located in `src/routes/__root.tsx`
 Here is an example layout that includes a header:
 
 ```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import { Link } from "@tanstack/react-router";
 
@@ -106,13 +102,12 @@ export const Route = createRootRoute({
       <TanStackRouterDevtools />
     </>
   ),
-})
+});
 ```
 
 The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
 
 More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
 
 ## Data Fetching
 
@@ -154,7 +149,7 @@ React-Query is an excellent addition or alternative to route loading and integra
 First add your dependencies:
 
 ```bash
-yarn add @tanstack/react-query @tanstack/react-query-devtools
+pnpm add @tanstack/react-query @tanstack/react-query-devtools
 ```
 
 Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
@@ -174,7 +169,7 @@ if (!rootElement.innerHTML) {
   root.render(
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </QueryClientProvider>
+    </QueryClientProvider>,
   );
 }
 ```
@@ -235,7 +230,7 @@ Another common requirement for React applications is state management. There are
 First you need to add TanStack Store as a dependency:
 
 ```bash
-yarn add @tanstack/store
+pnpm add @tanstack/store
 ```
 
 Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
