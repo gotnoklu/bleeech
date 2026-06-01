@@ -4,12 +4,15 @@
     "packages/*"
   ],
   "scripts": {
-    "build:ui": "yarn workspace @bleeech/ui build",
+    "build:ui": "nx run ui:build",
+    "build:web": "nx run web:build",
+    "build:demo": "nx run demo:build",
+    "ci": "biome ci",
     "lint": "biome check",
     "format": "biome format"
   },
-  "packageManager": "yarn@4.12.0",
   "devDependencies": {
-    "@biomejs/biome": "^2.3.10"
+    "@biomejs/biome": "^2.4.16",
+    "nx": "22.7.5"
   }
 }
