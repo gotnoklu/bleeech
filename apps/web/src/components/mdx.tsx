@@ -1,4 +1,3 @@
-// src/components/mdx-components.tsx
 import { Button } from '@/components/ui/button'
 import type { MDXComponents } from 'mdx/types'
 import { CodeExample } from './code-example'

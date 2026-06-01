@@ -1,5 +1,6 @@
 'use client'
 
+import { type ReactNode, useMemo, useState } from 'react'
 import type { BundledLanguage } from '@/components/kibo-ui/code-block'
 import {
   CodeBlock,
@@ -10,13 +11,18 @@ import {
   CodeBlockFiles,
   CodeBlockHeader,
   CodeBlockItem,
+  CodeBlockSelect,
+  CodeBlockSelectContent,
+  CodeBlockSelectItem,
+  CodeBlockSelectTrigger,
+  CodeBlockSelectValue,
 } from '@/components/kibo-ui/code-block'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { type ReactNode, useMemo, useState } from 'react'
-import { Show } from './show'
+import { Show } from './ui/show'
 
 export interface CodeExampleProps {
+  selector?: 'tabs' | 'dropdown'
   codes: Array<{
     language: BundledLanguage
     filename: string
@@ -28,8 +34,14 @@ export interface CodeExampleProps {
   className?: string
 }
 
-const CodeExample = ({ codes, className }: CodeExampleProps) => {
-  const [selectedCode, setSelectedCode] = useState({ tab: codes[0].id, language: codes[0].language })
+const CodeExample = ({ selector = 'dropdown', codes, className }: CodeExampleProps) => {
+  const [selectedCode, setSelectedCode] = useState<{
+    tab: string
+    language: BundledLanguage
+  }>({
+    tab: codes[0].id,
+    language: codes[0].language,
+  })
 
   const codesIndex = useMemo(
     () =>
@@ -40,29 +52,36 @@ const CodeExample = ({ codes, className }: CodeExampleProps) => {
         },
         {} as { [key: string]: number }
       ),
-    []
+    [codes]
   )
 
   return (
     <section className={className}>
       <div className="flex w-full flex-col gap-1 overflow-hidden">
-        <Tabs
-          defaultValue={selectedCode.tab}
-          onValueChange={(tab) =>
-            setSelectedCode((prev) => ({ ...prev, tab, language: codes[codesIndex[tab]].language }))
-          }
-        >
-          <TabsList className="h-10">
-            {codes.map((code) => (
-              <TabsTrigger key={code.id} value={code.id} className="px-8">
-                {code.icon}
-                {code.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
+        <Show when={selector === 'tabs'}>
+          <Tabs
+            className="overflow-x-auto"
+            value={selectedCode.tab}
+            onValueChange={(tab) =>
+              setSelectedCode((prev) => ({
+                ...prev,
+                tab,
+                language: codes[codesIndex[tab]].language,
+              }))
+            }
+          >
+            <TabsList className="h-10">
+              {codes.map((code) => (
+                <TabsTrigger key={code.id} value={code.id} className="px-8">
+                  {code.icon}
+                  {code.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </Show>
         <CodeBlock data={codes} value={selectedCode.language} className="w-full">
-          <CodeBlockHeader>
+          <CodeBlockHeader className="overflow-x-auto">
             <CodeBlockFiles>
               {(item) => (
                 <Show key={item.id} when={item.id === selectedCode.tab}>
@@ -72,6 +91,29 @@ const CodeExample = ({ codes, className }: CodeExampleProps) => {
                 </Show>
               )}
             </CodeBlockFiles>
+            <Show when={selector === 'dropdown'}>
+              <CodeBlockSelect
+                value={selectedCode.tab}
+                onValueChange={(selected) =>
+                  setSelectedCode((prev) => ({
+                    ...prev,
+                    tab: selected,
+                    language: codes[codesIndex[selected]].language,
+                  }))
+                }
+              >
+                <CodeBlockSelectTrigger className="max-w-[150px] md:max-w-fit [&>[data-slot='select-value']]:block [&>[data-slot='select-value']]:md:flex *:data-[slot='select-value']:text-ellipsis md:[text-overflow:initial]">
+                  <CodeBlockSelectValue />
+                </CodeBlockSelectTrigger>
+                <CodeBlockSelectContent>
+                  {(item) => (
+                    <CodeBlockSelectItem key={item.id} value={item.id}>
+                      {item.label}
+                    </CodeBlockSelectItem>
+                  )}
+                </CodeBlockSelectContent>
+              </CodeBlockSelect>
+            </Show>
             <CodeBlockCopyButton />
           </CodeBlockHeader>
           <ScrollArea className="w-full">

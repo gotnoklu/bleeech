@@ -59,83 +59,79 @@ const data = {
         },
         {
           title: 'Box',
-          url: '/docs/',
+          url: '/docs/components/box',
         },
         {
           title: 'Button',
-          url: '/docs/',
+          url: '/docs/components/button',
         },
         {
           title: 'Card',
-          url: '/docs/',
+          url: '/docs/components/card',
         },
         {
           title: 'Checkbox',
-          url: '/docs/',
+          url: '/docs/components/checkbox',
         },
         {
           title: 'Chip',
-          url: '/docs/',
-        },
-        {
-          title: 'Color',
-          url: '/docs/',
+          url: '/docs/components/chip',
         },
         {
           title: 'Date/Time Picker',
-          url: '/docs/',
+          url: '/docs/components/date-time-picker',
         },
         {
           title: 'Select',
-          url: '/docs/',
+          url: '/docs/components/select',
         },
         {
           title: 'Icons',
-          url: '/docs/',
+          url: '/docs/components/icons',
         },
         {
           title: 'Input',
-          url: '/docs/',
+          url: '/docs/components/input',
         },
         {
           title: 'List Item',
-          url: '/docs/',
+          url: '/docs/components/list-item',
         },
         {
           title: 'List Item Button',
-          url: '/docs/',
+          url: '/docs/components/list-item-button',
         },
         {
           title: 'Popup',
-          url: '/docs/',
+          url: '/docs/components/popup',
         },
         {
           title: 'Progress',
-          url: '/docs/',
+          url: '/docs/components/progress',
         },
         {
           title: 'Separator',
-          url: '/docs/',
+          url: '/docs/components/separator',
         },
         {
           title: 'Show',
-          url: '/docs/',
+          url: '/docs/components/show',
         },
         {
           title: 'Slider',
-          url: '/docs/',
+          url: '/docs/components/slider',
         },
         {
           title: 'Switch',
-          url: '/docs/',
+          url: '/docs/components/switch',
         },
         {
           title: 'Tabs',
-          url: '/docs/',
+          url: '/docs/components/tabs',
         },
         {
           title: 'Text',
-          url: '/docs/',
+          url: '/docs/components/text',
         },
       ],
     },
@@ -165,6 +161,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href="/">
+                  <p className="font-medium">Home</p>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             {data.navMain.map((item) => (
               <Collapsible key={item.title} asChild className="group/collapsible">
                 <SidebarMenuItem>
