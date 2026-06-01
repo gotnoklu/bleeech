@@ -13,6 +13,7 @@ import type { PressableProps, StyleProp, TextStyle, View, ViewStyle } from 'reac
 import { merge } from '../utilities'
 import { useTheme } from './context'
 import type { Theme } from './types'
+import { isObject } from './utilities'
 
 export function styled<
   const TElement extends
@@ -126,22 +127,63 @@ export function createStyles<
   }
 }
 
-export function selectStyles<
-  TStyles extends Array<{
-    when?: boolean
-    styles: StyleProp<ViewStyle> | StyleProp<TextStyle>
-    fallback?: StyleProp<ViewStyle> | StyleProp<TextStyle>
-  }>,
->(...styles: TStyles): TStyles[number]['styles'] {
-  const result = [] as Array<TStyles[number]['styles']>
+export function createVariants<Styles extends { [key: string]: string | ViewStyle | TextStyle }>(variants: {
+  styles: Styles
+  defaults: { variant: keyof Styles; styles?: ViewStyle | TextStyle }
+}) {
+  const { styles, defaults } = variants
+  return function selectVariant(variant?: keyof Styles) {
+    if (!variant) {
+      if (defaults?.variant) {
+        const selectedStyles = styles[defaults.variant]
+        if (typeof selectedStyles === 'string') {
+          return styles[selectedStyles] as unknown as Exclude<Styles[keyof Styles], string>
+        }
 
-  for (const def of styles) {
-    if (def.when === true || !('when' in def)) {
-      result.push(def.styles)
-    } else if (def.fallback !== undefined) {
-      result.push(def.fallback)
+        return selectedStyles as Exclude<Styles[keyof Styles], string>
+      }
+      return defaults?.styles ?? {}
     }
+
+    if (variant in styles) {
+      let selectedStyles = styles[variant]
+
+      if (typeof selectedStyles === 'string') {
+        selectedStyles = styles[selectedStyles]
+
+        if (selectedStyles) {
+          if (defaults?.styles) {
+            return merge(defaults.styles, selectedStyles as ViewStyle | TextStyle) as Exclude<
+              Styles[keyof Styles],
+              string
+            >
+          }
+
+          return selectedStyles as Exclude<Styles[keyof Styles], string>
+        }
+
+        return defaults?.styles ?? {}
+      }
+
+      if (defaults?.styles) {
+        return merge(defaults.styles, selectedStyles as ViewStyle | TextStyle) as Exclude<Styles[keyof Styles], string>
+      }
+
+      return selectedStyles as Exclude<Styles[keyof Styles], string>
+    }
+
+    return defaults?.styles ?? {}
+  }
+}
+
+export function mergeStyles<Styles extends Array<StyleProp<ViewStyle> | StyleProp<TextStyle>>>(
+  ...styles: Styles
+): Styles[number] {
+  let result = {} as Extract<StyleProp<ViewStyle> | StyleProp<TextStyle>, Record<PropertyKey, any>>
+
+  for (const style of styles) {
+    if (isObject(style)) result = merge(result, style)
   }
 
-  return merge(...result.filter((style) => style !== null)) as TStyles[number]['styles']
+  return result
 }
