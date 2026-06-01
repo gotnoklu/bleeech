@@ -1,0 +1,63 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-icons.tsx',
+    code: `import { IconUser, IconSettings } from '@bleeech/ui/components/icons'
+
+export const BasicIcons = () => {
+  return (
+    <>
+      <IconUser />
+      <IconSettings />
+    </>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-icons.jsx',
+    code: `import { IconUser, IconSettings } from '@bleeech/ui/components/icons'
+
+export const BasicIcons = () => {
+  return (
+    <>
+      <IconUser />
+      <IconSettings />
+    </>
+  )
+}
+`,
+  },
+]
+
+# Icons
+
+Bleeech ships a curated icon set you can use directly or alongside other UI components.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Icons accept size, color, and accessibility props. A full glyph catalog and guidance will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Import the icons you need and render them inline with text or controls.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Lists of available glyphs, theming guidance, and accessibility tips will follow.
+

@@ -1,0 +1,63 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-popup.tsx',
+    code: `import { Popup } from '@bleeech/ui/components/popup'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicPopup = (props) => {
+  return (
+    <Popup {...props} open>
+      <Text>Popup content</Text>
+    </Popup>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-popup.jsx',
+    code: `import { Popup } from '@bleeech/ui/components/popup'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicPopup = (props) => {
+  return (
+    <Popup {...props} open>
+      <Text>Popup content</Text>
+    </Popup>
+  )
+}
+`,
+  },
+]
+
+# Popup
+
+Popup displays floating content above the interface, ideal for tooltips, dropdowns, and small overlays.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Key props include open, onOpenChange, placement, and offset. Detailed docs will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Render popup content anchored to another element or trigger.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for triggers, animations, and focus management will follow.
+

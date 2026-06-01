@@ -1,0 +1,65 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-card.tsx',
+    code: `import { Card } from '@bleeech/ui/components/card'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicCard = (props) => {
+  return (
+    <Card {...props}>
+      <Text variant="lg" fontWeight="bold">Card title</Text>
+      <Text>Supporting content</Text>
+    </Card>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-card.jsx',
+    code: `import { Card } from '@bleeech/ui/components/card'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicCard = (props) => {
+  return (
+    <Card {...props}>
+      <Text variant="lg" fontWeight="bold">Card title</Text>
+      <Text>Supporting content</Text>
+    </Card>
+  )
+}
+`,
+  },
+]
+
+# Card
+
+Card presents related content inside a padded surface with optional elevation and borders.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Card forwards view props for layout, spacing, and shadows. Detailed prop coverage will be published soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Use Card to group content with consistent spacing and background styling.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Header, media, and footer variations will be added in future updates.
+

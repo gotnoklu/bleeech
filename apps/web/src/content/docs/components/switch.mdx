@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-switch.tsx',
+    code: `import { Switch } from '@bleeech/ui/components/switch'
+
+export const BasicSwitch = (props) => {
+  return <Switch value={true} onValueChange={() => {}} {...props} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-switch.jsx',
+    code: `import { Switch } from '@bleeech/ui/components/switch'
+
+export const BasicSwitch = (props) => {
+  return <Switch value={true} onValueChange={() => {}} {...props} />
+}
+`,
+  },
+]
+
+# Switch
+
+Switch toggles a binary state with a familiar on/off control, useful for settings and preferences.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Supports value, onValueChange, disabled, and color tokens. Full documentation will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Render a switch to toggle boolean settings.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for labeling, sizing, and form integration will follow.
+

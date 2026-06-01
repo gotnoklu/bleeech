@@ -1,0 +1,55 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-list-item.tsx',
+    code: `import { ListItem } from '@bleeech/ui/components/list-item'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicListItem = (props) => {
+  return <ListItem {...props} title={<Text>Item title</Text>} subtitle={<Text>Subtitle</Text>} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-list-item.jsx',
+    code: `import { ListItem } from '@bleeech/ui/components/list-item'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicListItem = (props) => {
+  return <ListItem {...props} title={<Text>Item title</Text>} subtitle={<Text>Subtitle</Text>} />
+}
+`,
+  },
+]
+
+# List Item
+
+List Item presents a row with primary and optional secondary text, supporting accessories like icons or avatars.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>List Item supports title, subtitle, left/right slots, and press handling. More details will be documented soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Use list items to show navigable or informational rows in lists.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Accessory slots, toggles, and multi-line variations will be added in future examples.
+

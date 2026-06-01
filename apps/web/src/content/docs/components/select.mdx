@@ -1,0 +1,63 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-select.tsx',
+    code: `import { Select } from '@bleeech/ui/components/select'
+
+const options = [
+  { label: 'First', value: 'first' },
+  { label: 'Second', value: 'second' },
+]
+
+export const BasicSelect = (props) => {
+  return <Select options={options} {...props} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-select.jsx',
+    code: `import { Select } from '@bleeech/ui/components/select'
+
+const options = [
+  { label: 'First', value: 'first' },
+  { label: 'Second', value: 'second' },
+]
+
+export const BasicSelect = (props) => {
+  return <Select options={options} {...props} />
+}
+`,
+  },
+]
+
+# Select
+
+Select allows users to choose from a list of options with searchable and modal-friendly behaviors.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Key props include options, value, onChange, and placeholder. More details will be documented soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Provide an array of options to render a selectable list.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Multi-select, async loading, and custom item rendering examples will be added soon.
+

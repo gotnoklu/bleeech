@@ -1,0 +1,65 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-tabs.tsx',
+    code: `import { Tabs } from '@bleeech/ui/components/tabs'
+import { Text } from '@bleeech/ui/components/text'
+
+const tabs = [
+  { key: 'one', title: 'One', content: <Text>Tab one</Text> },
+  { key: 'two', title: 'Two', content: <Text>Tab two</Text> },
+]
+
+export const BasicTabs = (props) => {
+  return <Tabs tabs={tabs} {...props} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-tabs.jsx',
+    code: `import { Tabs } from '@bleeech/ui/components/tabs'
+import { Text } from '@bleeech/ui/components/text'
+
+const tabs = [
+  { key: 'one', title: 'One', content: <Text>Tab one</Text> },
+  { key: 'two', title: 'Two', content: <Text>Tab two</Text> },
+]
+
+export const BasicTabs = (props) => {
+  return <Tabs tabs={tabs} {...props} />
+}
+`,
+  },
+]
+
+# Tabs
+
+Tabs organize content into sections, allowing quick switching between related views.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Tabs accept a tabs array, initial key, and onChange callbacks. More details will be documented soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Provide an array of tab definitions to render titles and associated content.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for badges, icons, and nested navigation will follow.
+

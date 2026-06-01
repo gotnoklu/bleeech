@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-input.tsx',
+    code: `import { Input } from '@bleeech/ui/components/input'
+
+export const BasicInput = (props) => {
+  return <Input placeholder="Type here" {...props} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-input.jsx',
+    code: `import { Input } from '@bleeech/ui/components/input'
+
+export const BasicInput = (props) => {
+  return <Input placeholder="Type here" {...props} />
+}
+`,
+  },
+]
+
+# Input
+
+Input provides a styled text field for collecting short-form text from users.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Input supports value, onChangeText, placeholder, and validation props. Full documentation will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Capture text input with a styled control that matches the design system.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for labels, helper text, and icons will be documented next.
+

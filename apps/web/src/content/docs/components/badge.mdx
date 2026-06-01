@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-badge.tsx',
+    code: `import { Badge } from '@bleeech/ui/components/badge'
+
+export const BasicBadge = (props) => {
+  return <Badge {...props}>New</Badge>
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-badge.jsx',
+    code: `import { Badge } from '@bleeech/ui/components/badge'
+
+export const BasicBadge = (props) => {
+  return <Badge {...props}>New</Badge>
+}
+`,
+  },
+]
+
+# Badge
+
+Badges highlight statuses, counts, or metadata with a compact visual pill.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Badges forward text/view styling props. Detailed prop documentation will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Use badges to annotate items or surfaces with short labels.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Variants, colors, and icon usage examples will follow.
+

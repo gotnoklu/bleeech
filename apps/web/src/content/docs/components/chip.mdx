@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-chip.tsx',
+    code: `import { Chip } from '@bleeech/ui/components/chip'
+
+export const BasicChip = (props) => {
+  return <Chip {...props}>Chip</Chip>
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-chip.jsx',
+    code: `import { Chip } from '@bleeech/ui/components/chip'
+
+export const BasicChip = (props) => {
+  return <Chip {...props}>Chip</Chip>
+}
+`,
+  },
+]
+
+# Chip
+
+Chips display compact pieces of information, filters, or quick actions with optional icons or dismiss controls.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Chip props cover variants, colors, icons, and press handling. More details will be documented soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Use chips to show tags, filters, or small actions inline with other content.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for selected state, avatars, and dismissible chips are coming soon.
+

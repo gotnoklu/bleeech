@@ -1,0 +1,61 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-background-view.tsx',
+    code: `import { BackgroundView } from '@bleeech/ui/components/background-view'
+
+export const BasicBackgroundView = (props) => {
+  return (
+    <BackgroundView {...props}>
+      {/* Place your content here */}
+    </BackgroundView>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-background-view.jsx',
+    code: `import { BackgroundView } from '@bleeech/ui/components/background-view'
+
+export const BasicBackgroundView = (props) => {
+  return (
+    <BackgroundView {...props}>
+      {/* Place your content here */}
+    </BackgroundView>
+  )
+}
+`,
+  },
+]
+
+# Background View
+
+The Background View component provides a styled container for wrapping page or section content while keeping layout spacing consistent.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Background View forwards standard view props. This page will be expanded with detailed prop documentation soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Use Background View to apply a consistent page background and padding.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Additional examples such as themed backgrounds and full-screen layouts will be added next.
+

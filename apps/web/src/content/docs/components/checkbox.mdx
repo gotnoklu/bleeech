@@ -1,0 +1,59 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-checkbox.tsx',
+    code: `import { Checkbox } from '@bleeech/ui/components/checkbox'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicCheckbox = (props) => {
+  return (
+    <Checkbox {...props} label={<Text>Accept terms</Text>} />
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-checkbox.jsx',
+    code: `import { Checkbox } from '@bleeech/ui/components/checkbox'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicCheckbox = (props) => {
+  return (
+    <Checkbox {...props} label={<Text>Accept terms</Text>} />
+  )
+}
+`,
+  },
+]
+
+# Checkbox
+
+Checkbox lets users toggle a boolean option, typically in forms or preference screens.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Checkbox exposes state, label, and accessibility props. Full documentation will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Render a checkbox with a label to capture user consent or selections.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Indeterminate, disabled, and group usage examples will be added next.
+

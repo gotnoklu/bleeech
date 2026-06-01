@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-progress.tsx',
+    code: `import { Progress } from '@bleeech/ui/components/progress'
+
+export const BasicProgress = (props) => {
+  return <Progress value={50} {...props} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-progress.jsx',
+    code: `import { Progress } from '@bleeech/ui/components/progress'
+
+export const BasicProgress = (props) => {
+  return <Progress value={50} {...props} />
+}
+`,
+  },
+]
+
+# Progress
+
+Progress visually represents completion state for long-running tasks or uploads.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Accepts value, max, and color-related props. Indeterminate and buffered modes will be documented soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Display a determinate progress bar by providing a numeric value.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for labels, stacked bars, and indeterminate states are coming soon.
+

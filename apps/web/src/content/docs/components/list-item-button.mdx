@@ -1,0 +1,55 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-list-item-button.tsx',
+    code: `import { ListItemButton } from '@bleeech/ui/components/list-item-button'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicListItemButton = (props) => {
+  return <ListItemButton {...props} title={<Text>Press me</Text>} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-list-item-button.jsx',
+    code: `import { ListItemButton } from '@bleeech/ui/components/list-item-button'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicListItemButton = (props) => {
+  return <ListItemButton {...props} title={<Text>Press me</Text>} />
+}
+`,
+  },
+]
+
+# List Item Button
+
+List Item Button is an actionable row styled for lists, combining text with tap feedback and optional accessories.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Supports title, subtitle, left/right slots, and press callbacks. Full prop docs will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Use list item buttons for navigation, menus, or actions inside list views.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for leading icons, chevrons, and disabled states will follow.
+

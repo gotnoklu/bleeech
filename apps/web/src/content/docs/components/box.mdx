@@ -1,0 +1,63 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-box.tsx',
+    code: `import { Box } from '@bleeech/ui/components/box'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicBox = (props) => {
+  return (
+    <Box padding="md" {...props}>
+      <Text>Content goes here</Text>
+    </Box>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-box.jsx',
+    code: `import { Box } from '@bleeech/ui/components/box'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicBox = (props) => {
+  return (
+    <Box padding="md" {...props}>
+      <Text>Content goes here</Text>
+    </Box>
+  )
+}
+`,
+  },
+]
+
+# Box
+
+Box is a flexible layout container that helps organize spacing, borders, and backgrounds for wrapped content.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Box forwards view props and layout-related tokens. Full prop coverage will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Wrap arbitrary content inside Box to apply consistent padding and background.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Spacing, border, and elevation examples will be documented next.
+

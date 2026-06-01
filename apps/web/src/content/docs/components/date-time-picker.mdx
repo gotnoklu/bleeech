@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-date-time-picker.tsx',
+    code: `import { DateTimePicker } from '@bleeech/ui/components/date-time-picker'
+
+export const BasicDateTimePicker = (props) => {
+  return <DateTimePicker {...props} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-date-time-picker.jsx',
+    code: `import { DateTimePicker } from '@bleeech/ui/components/date-time-picker'
+
+export const BasicDateTimePicker = (props) => {
+  return <DateTimePicker {...props} />
+}
+`,
+  },
+]
+
+# Date/Time Picker
+
+The Date/Time Picker lets users choose dates or date-time combinations with a consistent, themed control.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Props include value, onChange, mode, and localization options. Detailed guidance will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Render a picker to collect a date or date-time value from users.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for range selection, minimum/maximum dates, and custom formatting will follow.
+

@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-text.tsx',
+    code: `import { Text } from '@bleeech/ui/components/text'
+
+export const BasicText = (props) => {
+  return <Text {...props}>Hello, Bleeech!</Text>
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-text.jsx',
+    code: `import { Text } from '@bleeech/ui/components/text'
+
+export const BasicText = (props) => {
+  return <Text {...props}>Hello, Bleeech!</Text>
+}
+`,
+  },
+]
+
+# Text
+
+Text renders themed typography with variants, weights, and color tokens tailored to the design system.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Supports variant, color, alignment, and weight props. Full documentation will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Render readable text with consistent styling across the app.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for headings, links, and truncation will follow.
+

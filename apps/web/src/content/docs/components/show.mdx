@@ -1,0 +1,63 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-show.tsx',
+    code: `import { Show } from '@bleeech/ui/components/show'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicShow = () => {
+  return (
+    <Show when={true}>
+      <Text>Visible content</Text>
+    </Show>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-show.jsx',
+    code: `import { Show } from '@bleeech/ui/components/show'
+import { Text } from '@bleeech/ui/components/text'
+
+export const BasicShow = () => {
+  return (
+    <Show when={true}>
+      <Text>Visible content</Text>
+    </Show>
+  )
+}
+`,
+  },
+]
+
+# Show
+
+Show conditionally renders children when the provided condition is truthy, simplifying inline conditional UI.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Pass a boolean `when` prop and optional fallback. More details will be added soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Render or hide UI fragments based on runtime conditions.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples with asynchronous states and fallbacks will be documented next.
+

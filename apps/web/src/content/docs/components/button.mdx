@@ -1,0 +1,488 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-button.tsx',
+    code: `import { Button, type ButtonProps } from '@bleeech/ui/components/button'
+
+export interface BasicButtonProps extends ButtonProps {}
+
+export const BasicButton = (props: ButtonProps) => {
+  return (
+    <Button variant="filled" {...props}>
+      Click me
+    </Button>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-button.jsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const BasicButton = (props) => {
+  return (
+    <Button variant="filled" {...props}>
+      Click me
+    </Button>
+  )
+}
+`,
+  },
+]
+
+export const VariantCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'button-variants.tsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonVariants = () => {
+  return (
+    <>
+      <Button variant="filled">Filled</Button>
+      <Button variant="outlined">Outlined</Button>
+      <Button variant="ghost">Ghost</Button>
+    </>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'button-variants.jsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonVariants = () => {
+  return (
+    <>
+      <Button variant="filled">Filled</Button>
+      <Button variant="outlined">Outlined</Button>
+      <Button variant="ghost">Ghost</Button>
+    </>
+  )
+}
+`,
+  },
+]
+
+export const ShapeCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'button-shapes.tsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonShapes = () => {
+  return (
+    <>
+      <Button variant="filled">Default</Button>
+      <Button variant="filled" shape="rounded">
+        Rounded
+      </Button>
+    </>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'button-shapes.jsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonShapes = () => {
+  return (
+    <>
+      <Button variant="filled">Default</Button>
+      <Button variant="filled" shape="rounded">
+        Rounded
+      </Button>
+    </>
+  )
+}
+`,
+  },
+]
+
+export const SizeCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'button-sizes.tsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonSizes = () => {
+  return (
+    <>
+      <Button variant="filled" size="sm">Small</Button>
+      <Button variant="filled" size="md">Medium</Button>
+      <Button variant="filled" size="lg">Large</Button>
+    </>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'button-sizes.jsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonSizes = () => {
+  return (
+    <>
+      <Button variant="filled" size="sm">Small</Button>
+      <Button variant="filled" size="md">Medium</Button>
+      <Button variant="filled" size="lg">Large</Button>
+    </>
+  )
+}
+`,
+  },
+]
+
+export const IconButtonCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'icon-button.tsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+import { IconSettings } from '@bleeech/ui/components/icons'
+
+export const IconButton = () => {
+  return (
+    <>
+      <Button variant="filled" size="icon">
+        <IconSettings color="primary.foreground" />
+      </Button>
+      <Button size="icon" variant="outlined">
+        <IconSettings color="primary.main" />
+      </Button>
+      <Button size="icon" variant="ghost">
+        <IconSettings color="primary.main" />
+      </Button>
+    </>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'icon-button.jsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+import { IconSettings } from '@bleeech/ui/components/icons'
+
+export const IconButton = () => {
+  return (
+    <>
+      <Button variant="filled" size="icon">
+        <IconSettings color="primary.foreground" />
+      </Button>
+      <Button size="icon" variant="outlined">
+        <IconSettings color="primary.main" />
+      </Button>
+      <Button size="icon" variant="ghost">
+        <IconSettings color="primary.main" />
+      </Button>
+    </>
+  )
+}
+`,
+  },
+]
+
+export const DisabledCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'button-disabled.tsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonDisabled = () => {
+  return (
+    <>
+      <Button variant="filled" disabled>
+        Disabled
+      </Button>
+      <Button variant="outlined" disabled>
+        Disabled
+      </Button>
+      <Button variant="ghost" disabled>
+        Disabled
+      </Button>
+    </>
+  )
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'button-disabled.jsx',
+    code: `import { Button } from '@bleeech/ui/components/button'
+
+export const ButtonDisabled = () => {
+  return (
+    <>
+      <Button variant="filled" disabled>
+        Disabled
+      </Button>
+      <Button variant="outlined" disabled>
+        Disabled
+      </Button>
+      <Button variant="ghost" disabled>
+        Disabled
+      </Button>
+    </>
+  )
+}
+`,
+  },
+]
+
+# Button
+
+The Button component is a versatile interactive element that triggers actions when clicked. It supports multiple variants, sizes, shapes, and can display text, icons, or custom content.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>Spread Props</AlertTitle>
+  <AlertDescription>The root element for the Button component is a Pressable and supports its props.</AlertDescription>
+</Alert>
+
+<Accordion type="multiple" collapsible className="w-full">
+  <AccordionItem value="variant">
+    <AccordionTrigger>variant</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>The visual style variant of the button.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>`enum`</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Values</h6>
+          <div className='flex items-center gap-2'>
+            <code>`'filled'`</code>
+            <code>`'outlined'`</code>
+            <code>`'ghost'`</code>
+          </div>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Default</h6>
+          <code>`'filled'`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+
+  <AccordionItem value="color">
+    <AccordionTrigger>color</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>Background color of the button. Can be a theme palette color token or any valid color string.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>`PaletteColorToken | string`</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Default</h6>
+          <code>`'primary'`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+
+  <AccordionItem value="size">
+    <AccordionTrigger>size</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>Size of the button. <code>sm</code> is 32px, <code>md</code> is 40px, and <code>lg</code> is 48px. Icon sizes are available as <code>icon</code>, <code>icon-sm</code>, <code>icon-md</code>, and <code>icon-lg</code>.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>`enum`</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Values</h6>
+          <div className='flex items-center gap-2'>
+            <code>`'sm'`</code>
+            <code>`'md'`</code>
+            <code>`'lg'`</code>
+            <code>`'icon'`</code>
+            <code>`'icon-sm'`</code>
+            <code>`'icon-md'`</code>
+            <code>`'icon-lg'`</code>
+          </div>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Default</h6>
+          <code>`'md'`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+
+  <AccordionItem value="shape">
+    <AccordionTrigger>shape</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>Shape variant of the button. <code>default</code> creates a rounded rectangle, <code>rounded</code> creates a fully rounded pill shape.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>`enum`</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Values</h6>
+          <div className='flex items-center gap-2'>
+            <code>`'default'`</code>
+            <code>`'rounded'`</code>
+          </div>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Default</h6>
+          <code>`'default'`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+
+  <AccordionItem value="disabled">
+    <AccordionTrigger>disabled</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>Whether the button is disabled. Disabled buttons cannot be pressed and have reduced opacity.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>`boolean`</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Default</h6>
+          <code>`false`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+
+  <AccordionItem value="fullWidth">
+    <AccordionTrigger>fullWidth</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>Whether the button should take up the full width of its container.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>`boolean`</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Default</h6>
+          <code>`false`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+
+  <AccordionItem value="children">
+    <AccordionTrigger>children</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>Content to display inside the button. String and number children are automatically wrapped in a Text component with appropriate styling. Icons and other React components can also be used.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>`ReactNode`</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Required</h6>
+          <code>`true`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+
+  <AccordionItem value="viewProps">
+    <AccordionTrigger>viewProps</AccordionTrigger>
+    <AccordionContent>
+      <div className="space-y-2 flex flex-col gap-3">
+        <p>Additional props to pass to the underlying Text component when children are strings or numbers.</p>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Type</h6>
+          <code className='text-blue-500 border-blue-500'>{`{ text?: TextProps }`}</code>
+        </div>
+        <div>
+          <h6 className='text-xs mb-2 text-muted-foreground'>Default</h6>
+          <code>`undefined`</code>
+        </div>
+      </div>
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+## Basic Usage
+
+The simplest button displays text content with a filled background.
+
+<CodeExample codes={BasicCodes} />
+
+## Variants
+
+Buttons support three visual variants: `filled` (solid background), `outlined` (border only), and `ghost` (transparent background).
+
+<CodeExample codes={VariantCodes} />
+
+## Shapes
+
+Buttons support two shape variants: `default` (rounded rectangle) and `rounded` (fully rounded pill).
+
+<CodeExample codes={ShapeCodes} />
+
+## Sizes
+
+Buttons come in three predefined sizes: `sm` (32px), `md` (40px), and `lg` (48px).
+
+<CodeExample codes={SizeCodes} />
+
+## Icon Buttons
+
+Icon buttons are square buttons that display only an icon. Use the `icon`, `icon-sm`, `icon-md`, or `icon-lg` size values to create icon buttons.
+
+<CodeExample codes={IconButtonCodes} />
+
+## Disabled State
+
+Disabled buttons cannot be pressed and have reduced opacity to indicate their inactive state.
+
+<CodeExample codes={DisabledCodes} />
+

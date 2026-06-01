@@ -1,0 +1,53 @@
+import { IconFileTypeTsx, IconFileTypeJsx, IconBubble } from '@tabler/icons-react'
+
+export const BasicCodes = [
+  {
+    id: 'tsx',
+    icon: <IconFileTypeTsx />,
+    label: 'TSX',
+    language: 'tsx',
+    filename: 'basic-slider.tsx',
+    code: `import { Slider } from '@bleeech/ui/components/slider'
+
+export const BasicSlider = (props) => {
+  return <Slider value={50} {...props} />
+}
+`,
+  },
+  {
+    id: 'jsx',
+    icon: <IconFileTypeJsx />,
+    label: 'JSX',
+    language: 'jsx',
+    filename: 'basic-slider.jsx',
+    code: `import { Slider } from '@bleeech/ui/components/slider'
+
+export const BasicSlider = (props) => {
+  return <Slider value={50} {...props} />
+}
+`,
+  },
+]
+
+# Slider
+
+Slider captures numeric values along a range, supporting single or multiple thumbs.
+
+## Props
+
+<Alert>
+  <IconBubble />
+  <AlertTitle>API note</AlertTitle>
+  <AlertDescription>Common props include value, min, max, step, and onValueChange. More details will be documented soon.</AlertDescription>
+</Alert>
+
+## Basic Usage
+
+Allow users to adjust a numeric value by dragging a handle.
+
+<CodeExample codes={BasicCodes} />
+
+## Notes
+
+Examples for ranges, labels, and disabled states will be added soon.
+
