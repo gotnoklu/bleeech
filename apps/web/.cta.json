@@ -3,15 +3,10 @@
   "mode": "file-router",
   "typescript": true,
   "tailwind": true,
-  "packageManager": "yarn",
+  "packageManager": "pnpm",
   "addOnOptions": {},
   "git": true,
   "version": 1,
   "framework": "react-cra",
-  "chosenAddOns": [
-    "biome",
-    "nitro",
-    "start",
-    "shadcn"
-  ]
+  "chosenAddOns": ["biome", "nitro", "start", "shadcn"]
 }
